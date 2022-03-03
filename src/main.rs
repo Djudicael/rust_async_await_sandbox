@@ -1,11 +1,20 @@
-pub mod simple;
-use futures::io::AsyncRead;
-use futures::stream::Stream;
-use futures::task::Context;
-use futures::task::Poll;
+extern crate d5_futures;
+use std::net::SocketAddr;
 
-use std::pin::Pin;
+use tokio::net::{TcpListener, TcpStream};
 
-fn main() {
-    println!("Hello, world!");
+async fn process_socket(socket: TcpStream) {
+    // ...
+}
+
+use std::io;
+
+#[tokio::main]
+async fn main() -> io::Result<()> {
+    let mut listener = TcpListener::bind("127.0.0.1:8080").await?;
+
+    loop {
+        let (socket, _) = listener.accept().await?;
+        process_socket(socket).await;
+    }
 }

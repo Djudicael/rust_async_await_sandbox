@@ -28,7 +28,7 @@ mod tests {
     use futures::channel::oneshot;
     use futures::future::FutureExt;
 
-    use crate::simple::{simpleexec, SimpleFuture};
+    use lib::simple::{simpleexec, SimpleFuture};
 
     #[test]
     fn test_future_return_simpleexec_a_value() {
